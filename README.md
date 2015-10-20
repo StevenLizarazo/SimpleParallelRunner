@@ -93,7 +93,7 @@ public class Sum implements Runner {
 RunnerPool instance = new RunnerPool();
 //Parameters
 ArrayList < Integer > input = new ArrayList < Integer > ();
-
+int max=100;
 for (int i = 1; i <= max; i++) {
 	//Add a parameter 
 	input.add(1);
@@ -115,5 +115,5 @@ for (Object o: instance.getInstances()) {
 	IntContainer w = (IntContainer) o;
 	c += w.getSum();
 }
-System.out.print("Result:" + c);
+System.out.print("Result: " + c+"="+max);
 ```
