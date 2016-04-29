@@ -15,37 +15,17 @@ import java.util.Collection;
  */
 public class InstanceThread extends Thread implements Runnable{
 private Object instance;
-private Collection<ParallelParameter> input;
+private ParameterPool input;
 
 private Runner runner;
 private boolean running;
-/*public Parameter fetchAndSet(Collection<Parameter> params){
-synchronized(params){
-    int pos=0; 
-    //System.out.println("Sp");
-
-    for(Parameter p:input ){
-     pos++;
- if(!p.isRunned()){  
-  p.setRunned(true);
-  
-if(pos%1000==0)
-  System.out.println("Found item at pos"+pos +" "+p);
- return p;
- }
- 
-    }
- 
-}
-return null;
-}
-*/
 public void run(){
 
 //  System.out.println("Start thread, input "+input.size());
 //Parameter p=fetchAndSet(input);
 //this.setRunning(true);
-for(ParallelParameter par: input){
+ParallelParameter par= input.fetch();
+while(par!=null){
 try{
 par.setOutput(runner.run(getInstance(),par));
 par.setAborted(false);
@@ -58,6 +38,7 @@ e.printStackTrace();
 }
 
  //p=fetchAndSet(input);
+ par= input.fetch();
 
 }
 
@@ -84,14 +65,14 @@ this.setRunning(false);
     /**
      * @return the input
      */
-    public Collection getInput() {
+    public ParameterPool getInput() {
         return input;
     }
 
     /**
      * @param input the input to set
      */
-    public void setInput(Collection input) {
+    public void setInput(ParameterPool input) {
         this.input = input;
     }
 
