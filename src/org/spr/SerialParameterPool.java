@@ -25,12 +25,14 @@ return params;    }
     @Override
     public void setParams(Collection prs) { 
         this.params = new ArrayList<ParallelParameter>();
+        int i=0;
         for (Object o : prs) {
             ParallelParameter p = new ParallelParameter();
             p.setInput(o);
             p.setRunned(false);
             p.setAborted(false);
-
+            p.setIndex(i);
+            i++;
             this.params.add(p);
         }   
     it=params.listIterator();

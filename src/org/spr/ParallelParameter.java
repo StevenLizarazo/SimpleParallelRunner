@@ -16,7 +16,7 @@ public class ParallelParameter {
     private boolean aborted;
     private Exception error;
     private String message;
-
+private int index ;
     /**
      * @return the input
      */
@@ -99,5 +99,19 @@ public class ParallelParameter {
      */
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    /**
+     * @return the index
+     */
+    public int getIndex() {
+        return index;
+    }
+
+    /**
+     * @param index the index to set
+     */
+    public void setIndex(int index) {
+        this.index = index;
     }
 }
